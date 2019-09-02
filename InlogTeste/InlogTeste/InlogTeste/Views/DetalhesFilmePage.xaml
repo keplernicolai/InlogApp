@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:InlogTeste.Converters"
+             xmlns:ffImage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             mc:Ignorable="d"
+             x:Class="InlogTeste.Views.DetalhesFilmePage"
+             Title="Detalhes">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:RealCurrencyConverter x:Key="realCurrency" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+
+        <ScrollView>
+            <StackLayout HorizontalOptions="FillAndExpand" Margin="10,10,10,0">
+
+                <ffImage:CachedImage Source="{Binding DetalheFilme.backdrop_path}" Aspect="AspectFill" HorizontalOptions="FillAndExpand" RetryCount="3" RetryDelay="3"/>
+
+                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                    <!--<Label Text="Titulo:" FontSize="Medium" FontAttributes="Bold"/>-->
+                    <Label Text="{Binding DetalheFilme.title}" FontSize="Subtitle" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" Spacing="3">
+                    <Label Text="Nota:" FontSize="Medium" FontAttributes="Bold"/>
+                    <Label Text="{Binding DetalheFilme.vote_average}" FontSize="Medium" />
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" Spacing="3">
+                    <Label Text="Data Lancamento:" FontSize="Medium" FontAttributes="Bold"/>
+                    <Label Text="{Binding DetalheFilme.release_date, StringFormat='{0:dd/MM/yyyy}'}" FontSize="Medium" />
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" Spacing="3">
+                    <Label Text="Gêneros:" FontSize="Medium" FontAttributes="Bold"/>
+                    <Label Text="{Binding Generos}" FontSize="Medium" />
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" Spacing="3">
+                    <Label Text="Duração:" FontSize="Medium" FontAttributes="Bold"/>
+                    <Label Text="{Binding DetalheFilme.runtime}" FontSize="Medium" />
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" Spacing="3">
+                    <Label Text="Budget:" FontSize="Medium" FontAttributes="Bold"/>
+                    <Label Text="{Binding DetalheFilme.budget, Converter={StaticResource realCurrency}}" FontSize="Medium" />
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" Spacing="3">
+                    <Label Text="Revenue:" FontSize="Medium" FontAttributes="Bold"/>
+                    <Label Text="{Binding DetalheFilme.revenue, Converter={StaticResource realCurrency}}" FontSize="Medium" />
+                </StackLayout>
+
+                <StackLayout Spacing="3" HorizontalOptions="FillAndExpand">
+                    <Label Text="Sinopse:" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="StartAndExpand"/>
+                    <Label Text="{Binding DetalheFilme.overview}" FontSize="Medium" LineBreakMode="WordWrap"/>
+                </StackLayout>
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

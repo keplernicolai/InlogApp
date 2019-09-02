@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ffImage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             mc:Ignorable="d"
+             x:Class="InlogTeste.MainPage"
+             Title="Lista de filmes">
+
+    <ContentPage.Content>
+
+        <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+
+            <SearchBar Text="{Binding SearchText, Mode=TwoWay}" HorizontalOptions="FillAndExpand"/>
+
+            <ListView ItemsSource="{Binding ResultadoFilmes}" SelectedItem="{Binding FilmeSelecionado, Mode=TwoWay}" HasUnevenRows="True" Margin="10,0"
+                          SeparatorVisibility="Default">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="0,10">
+                                    <StackLayout>
+                                        <ffImage:CachedImage Source="{Binding poster_path}" Aspect="AspectFit" RetryCount="3" RetryDelay="3"/>
+                                    </StackLayout>
+
+                                    <StackLayout>
+                                        <StackLayout Orientation="Horizontal" Spacing="3">
+                                            <!--<Label Text="Titulo:" FontSize="Medium" FontAttributes="Bold"/>-->
+                                            <Label Text="{Binding title}" FontSize="Medium" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+                                        </StackLayout>
+
+                                        <StackLayout Orientation="Horizontal" Spacing="3">
+                                            <Label Text="Nota:" FontSize="Medium" FontAttributes="Bold"/>
+                                            <Label Text="{Binding vote_average}" FontSize="Medium" />
+                                        </StackLayout>
+
+                                        <StackLayout Orientation="Horizontal" Spacing="3">
+                                            <Label Text="Data Lancamento:" FontSize="Medium" FontAttributes="Bold"/>
+                                            <Label Text="{Binding release_date, StringFormat='{0:dd/MM/yyyy}'}" FontSize="Medium" />
+                                        </StackLayout>
+                                    </StackLayout>
+                                </StackLayout>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+        
+
+    </ContentPage.Content>
+
+</ContentPage>
